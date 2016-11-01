@@ -1,0 +1,16 @@
+<h1>String Interpolation</h1>
+<p>
+{{stringInterpolation}} | {{numberInterpolation}}
+</p>
+<hr>
+<h1>Property binding</h1>
+<input type="text" [value]="stringInterpolation">
+<p [ngClass]="{redBorder: onTest()}">Is this is styled?</p>
+<p [ngStyle]="{color : 'green'}">Is this is styled?</p>
+<h3>Custom property binding</h3>
+<app-property-binding [result]="10"></app-property-binding>
+<h3>Event binding</h3>
+<app-event-binding (clicked)="onClicked($event)"></app-event-binding>
+<h3>twoway binding</h3>
+<app-two-way-binding></app-two-way-binding>
+<br><br><br><br><br><br><br><br><br>
