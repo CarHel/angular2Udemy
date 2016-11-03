@@ -9,8 +9,8 @@ import {Recipe} from '../recipe';
 })
 export class RecipeListComponent implements OnInit {
 recipes: Recipe[]= [
- new Recipe('dummy', 'dummy', 'http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437'),
-  new Recipe('dummy2', 'dummy2', 'http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437')
+ new Recipe('dummy', 'dummy', 'http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437',[]),
+  new Recipe('dummy2', 'dummy2', 'http://vignette4.wikia.nocookie.net/mrmen/images/5/52/Small.gif/revision/latest?cb=20100731114437',[])
 ];
 @Output() recipeSelected=new EventEmitter<Recipe>();
 
