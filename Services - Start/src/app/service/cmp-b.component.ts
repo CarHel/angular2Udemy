@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { LogService} from './log.service';
 
@@ -46,5 +46,10 @@ this.items= this.dataService.getData().slice(0);
 
     onSend(value: string) {
 
+    }
+
+    ngOnInit()
+    {
+        
     }
 }
