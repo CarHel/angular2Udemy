@@ -1,11 +1,10 @@
 
 export class DataService {
-private data:string[]=[];
-  addData(input:string)
-  {
-  this.data.push(input);
+  private data: string[] = [];
+  addData(input: string) {
+    this.data.push(input);
   }
-  getData(){
+  getData() {
     return this.data;
   }
 
