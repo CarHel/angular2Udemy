@@ -1,5 +1,5 @@
 export class LogService {
-wrteToLog(logMessage:string){
+writeToLog(logMessage:string){
   console.log(logMessage);
 }
 }
