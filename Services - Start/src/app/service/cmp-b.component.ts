@@ -23,14 +23,15 @@ import { DataService } from './data.service';
         <h3>Received Value</h3>
         <p>{{value}}</p>
     </div>
-  `,
-    providers: [LogService, DataService]
+  `    
 })
 export class CmpBComponent implements OnInit {
     value = '';
     items: string[] = [];
 
-    constructor(private logService: LogService, private dataService: DataService) { }
+    constructor(private logService: LogService, private dataService: DataService) { 
+        
+    }
 
     onLog(value: string) {
         this.logService.writeToLog(value);
@@ -49,6 +50,7 @@ export class CmpBComponent implements OnInit {
     }
 
     ngOnInit() {
+this.dataService.pushDataEvent.subscribe(t=>this.value=t);
 
     }
 }
