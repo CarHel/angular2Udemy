@@ -8,7 +8,8 @@ import { Component, OnDestroy } from '@angular/core';
     <h1>
       Home Component!
     </h1>
-    {{param}}
+    <hr>
+    {{param}}    
   `,
   styles: []
 })
