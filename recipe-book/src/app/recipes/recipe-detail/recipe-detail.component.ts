@@ -11,7 +11,8 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private shoppingListService: ShoppingListService) { }
 
   onAddToShoppingList() {
-    this.shoppingListService.addItems(this.selectedRecipe.ingredients);
+    if (this.selectedRecipe)
+      this.shoppingListService.addItems(this.selectedRecipe.ingredients);
   }
 
   ngOnInit() {
