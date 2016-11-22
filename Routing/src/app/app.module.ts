@@ -1,3 +1,4 @@
+import { routing } from './app.routing';
 import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 
@@ -16,7 +17,7 @@ import { HomeComponent } from "./home-component.component";
         UserEditComponent,
         HomeComponent
     ],
-    imports: [BrowserModule],
+    imports: [BrowserModule,routing],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
