@@ -19,7 +19,7 @@ export class UserComponent implements OnDestroy {
   }
 
   onNavigate() {
-    this.router.navigate(['/'],{queryParams: {analytics:100},fragment:'id'});
+    this.router.navigate(['/'],{queryParams: {analytics:100},fragment:'section1'});
   }
   ngOnDestroy(){
     this.subscription.unsubscribe();
