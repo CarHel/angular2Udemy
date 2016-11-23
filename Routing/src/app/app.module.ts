@@ -1,3 +1,5 @@
+import { UserEditGuard } from './user/user-edit.guard';
+import { UserDetailGuard } from './user/user-detail.guard';
 import { routing } from './app.routing';
 import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
@@ -18,6 +20,7 @@ import { HomeComponent } from "./home-component.component";
         HomeComponent
     ],
     imports: [BrowserModule,routing],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers:[UserDetailGuard,UserEditGuard]
 })
 export class AppModule {}
