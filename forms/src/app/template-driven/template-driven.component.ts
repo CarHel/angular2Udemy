@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
   selector: 'template-driven',
   templateUrl: 'template-driven.component.html',
   styles:[`
-  input.ng-invalid.ng-touched{
+  input.ng-invalid.ng-dirty,input.ng-invalid.ng-touched{
     border: 1px solid red
   }
   `]
