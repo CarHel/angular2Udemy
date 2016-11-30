@@ -49,23 +49,23 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         recipeIngredients.push(
           new FormGroup({
             name: new FormControl(this.recipe.ingredients[i].name, Validators.required),
-            amount: new FormControl(this.recipe.ingredients[i].amount,[Validators.required,
-              Validators.pattern("\\d+")
-              ])
+            amount: new FormControl(this.recipe.ingredients[i].amount, [Validators.required,
+            Validators.pattern("\\d+")
+            ])
           }
-        ));
+          ));
         recipeName = this.recipe.name;
-      recipeImageUrl = this.recipe.imagePath;
-      recipeContent = this.recipe.description;
+        recipeImageUrl = this.recipe.imagePath;
+        recipeContent = this.recipe.description;
       }
-    this.recipeForm = this.formBuilder.group({
-      name: [recipeName, Validators.required],
-      imagePath: [recipeImageUrl, Validators.required],
-      description: [recipeContent, Validators.required],
-      ingredients: recipeIngredients
-    });  
+      this.recipeForm = this.formBuilder.group({
+        name: [recipeName, Validators.required],
+        imagePath: [recipeImageUrl, Validators.required],
+        description: [recipeContent, Validators.required],
+        ingredients: recipeIngredients
+      });
     }
-    
+
   }
 
   ngOnDestroy() {
