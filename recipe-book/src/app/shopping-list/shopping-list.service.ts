@@ -14,4 +14,17 @@ export class ShoppingListService {
     this.items.push(...items);
     // Array.prototype.push.apply(this.items,items);
   }
+    addItem(item: Ingredient) {
+    this.items.push(item);
+    // Array.prototype.push.apply(this.items,items);
+  }
+
+  editItem(oldItem:Ingredient,newItem:Ingredient){
+    this.items[this.items.indexOf(oldItem)]=newItem;
+  }
+
+  deleteItem(item:Ingredient)
+  {
+    this.items.splice(this.items.indexOf(item),1);
+  }
 }
