@@ -65,7 +65,7 @@
                     type="text"
                     class="form-control"
                     formControlName="name"
-                    [class.error]="true">
+                    [class.has-error]="recipeForm.controls.name.invalid">
                 </div>
                 <div class="col-sm-5">
                   <input
