@@ -1,21 +1,22 @@
 <div class="row">
   <div class="col-xs-12">
-    <form [formGroup]="recipeForm">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success">Save</button>
-          <a class="btn btn-danger">Cancel</a>
+          <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
+          <a class="btn btn-danger" (click)="onCancel()">Cancel</a>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <div class="form-group">
+          <div class="form-group" [class.has-error]="recipeForm.controls.name.invalid" >
             <label for="name">Title</label>
             <input
               type="text"
               id="name"
               class="form-control"
-              formControlName="name">
+              formControlName="name"              
+              >
           </div>
         </div>
       </div>
@@ -63,7 +64,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    formControlName="name">
+                    formControlName="name"
+                    [class.error]="true">
                 </div>
                 <div class="col-sm-5">
                   <input

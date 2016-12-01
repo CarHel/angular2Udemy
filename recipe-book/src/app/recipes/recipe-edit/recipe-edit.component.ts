@@ -3,14 +3,15 @@ import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@ang
 import { Subscription } from 'rxjs/Rx';
 import { RecipeService } from './../recipe.service';
 import { Recipe } from './../recipe';
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'rb-recipe-edit',
   templateUrl: './recipe-edit.component.html'
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
+
   recipeForm: FormGroup;
   private recipeIndex: number;
   private recipe: Recipe;
@@ -19,7 +20,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
@@ -52,8 +54,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
             amount: new FormControl(this.recipe.ingredients[i].amount, [Validators.required,
             Validators.pattern("\\d+")
             ])
-          }
-          ));
+          }));
         recipeName = this.recipe.name;
         recipeImageUrl = this.recipe.imagePath;
         recipeContent = this.recipe.description;
@@ -65,7 +66,27 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         ingredients: recipeIngredients
       });
     }
+  }
 
+  private navigateBack() {
+    this.router.navigate(['../']);
+  }
+
+  onSubmit() {
+    
+
+    const newRecipe = this.recipeForm.value;
+    if (this.isNew) {
+      this.recipeService.addRecipe(newRecipe);
+    }
+    else {
+      this.recipeService.editRecipe(this.recipe, newRecipe);
+    }
+    this.navigateBack();
+  }
+
+  onCancel() {
+    this.navigateBack();
   }
 
   ngOnDestroy() {
