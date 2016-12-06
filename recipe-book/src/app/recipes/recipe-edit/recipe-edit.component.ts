@@ -55,17 +55,19 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
             Validators.pattern("\\d+")
             ])
           }));
-        recipeName = this.recipe.name;
-        recipeImageUrl = this.recipe.imagePath;
-        recipeContent = this.recipe.description;
+
       }
-      this.recipeForm = this.formBuilder.group({
+      recipeName = this.recipe.name;
+      recipeImageUrl = this.recipe.imagePath;
+      recipeContent = this.recipe.description;
+
+    }
+          this.recipeForm = this.formBuilder.group({
         name: [recipeName, Validators.required],
         imagePath: [recipeImageUrl, Validators.required],
         description: [recipeContent, Validators.required],
         ingredients: recipeIngredients
       });
-    }
   }
 
   private navigateBack() {
@@ -73,8 +75,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    
-
     const newRecipe = this.recipeForm.value;
     if (this.isNew) {
       this.recipeService.addRecipe(newRecipe);
@@ -87,6 +87,19 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   onCancel() {
     this.navigateBack();
+  }
+
+  onAddItem(name: string, amount: string) {
+    (<FormArray>this.recipeForm.controls['ingredients']).push(new FormGroup({
+      name: new FormControl(name, Validators.required),
+      amount: new FormControl(amount, [Validators.required,
+      Validators.pattern("\\d+")]
+      )
+    }));
+  }
+
+  onRemoveItem(index: number) {
+    (<FormArray>this.recipeForm.controls['ingredients']).removeAt(index);
   }
 
   ngOnDestroy() {
