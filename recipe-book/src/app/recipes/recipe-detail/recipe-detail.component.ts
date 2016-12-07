@@ -38,6 +38,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
       this.recipeIndex = t['id'];
       this.selectedRecipe = this.recipeService.getRecipe(this.recipeIndex);
     });
+    
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
