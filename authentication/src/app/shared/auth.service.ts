@@ -1,14 +1,15 @@
 import { User } from './user.interface';
+
+declare var firebase:any;
+
 export class Authservice {
     signupUser(user: User) {
-
-        var user = firebase.auth().currentUser;
-
-        if (user) {
-            // User is signed in.
-        } else {
-            // No user is signed in.
-        }
+firebase.auth().createUserWithEmailAndPassword(user.email,user.email).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
 
     }
 }

@@ -1,3 +1,4 @@
+import { Authservice } from './../shared/auth.service';
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 
@@ -5,17 +6,17 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
     template: `
         <h3>Please sign up to use all features</h3>
         <form [formGroup]="myForm" (ngSubmit)="onSignup()">
-            <div class="input-group">
+            <div class="form-group">
                 <label for="email">E-Mail</label>
                 <input formControlName="email" type="email" class="form-control" id="email" #email>
                 <span *ngIf="!email.pristine && email.errors != null && email.errors['noEmail']">Invalid mail address</span>
                 <!--<span *ngIf="email.errors['isTaken']">This username has already been taken</span>-->
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input formControlName="password" type="password" class="form-control" id="password">
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
                 <input formControlName="confirmPassword" type="password" class="form-control" id="confirm-password" #confirmPassword>
                 <span *ngIf="!confirmPassword.pristine && confirmPassword.errors != null && confirmPassword.errors['passwordsNotMatch']">Passwords do not match</span>
@@ -29,11 +30,11 @@ export class SignupComponent implements OnInit {
     error = false;
     errorMessage = '';
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private authService: Authservice) {
     }
 
     onSignup() {
-
+        this.authService.signupUser(this.myForm.value);
     }
 
     ngOnInit(): any {
@@ -50,19 +51,19 @@ export class SignupComponent implements OnInit {
         });
     }
 
-    isEmail(control: FormControl): {[s: string]: boolean} {
+    isEmail(control: FormControl): { [s: string]: boolean } {
         if (!control.value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-            return {noEmail: true};
+            return { noEmail: true };
         }
     }
 
-    isEqualPassword(control: FormControl): {[s: string]: boolean} {
+    isEqualPassword(control: FormControl): { [s: string]: boolean } {
         if (!this.myForm) {
-            return {passwordsNotMatch: true};
+            return { passwordsNotMatch: true };
 
         }
         if (control.value !== this.myForm.controls['password'].value) {
-            return {passwordsNotMatch: true};
+            return { passwordsNotMatch: true };
         }
     }
 }
