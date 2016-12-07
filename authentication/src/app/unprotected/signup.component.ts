@@ -7,20 +7,20 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
         <form [formGroup]="myForm" (ngSubmit)="onSignup()">
             <div class="input-group">
                 <label for="email">E-Mail</label>
-                <input formControlName="email" type="email" id="email" #email>
+                <input formControlName="email" type="email" class="form-control" id="email" #email>
                 <span *ngIf="!email.pristine && email.errors != null && email.errors['noEmail']">Invalid mail address</span>
                 <!--<span *ngIf="email.errors['isTaken']">This username has already been taken</span>-->
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input formControlName="password" type="password" id="password">
+                <input formControlName="password" type="password" class="form-control" id="password">
             </div>
             <div class="input-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input formControlName="confirmPassword" type="password" id="confirm-password" #confirmPassword>
+                <input formControlName="confirmPassword" type="password" class="form-control" id="confirm-password" #confirmPassword>
                 <span *ngIf="!confirmPassword.pristine && confirmPassword.errors != null && confirmPassword.errors['passwordsNotMatch']">Passwords do not match</span>
             </div>
-            <button type="submit" [disabled]="!myForm.valid">Sign Up</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Sign Up</button>
         </form>
     `
 })

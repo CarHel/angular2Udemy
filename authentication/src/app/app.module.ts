@@ -1,6 +1,7 @@
+import { routing } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -20,7 +21,9 @@ import { ProtectedComponent } from "./protected/protected.component";
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule
+    FormsModule,
+    HttpModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
