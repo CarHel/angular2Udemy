@@ -18,7 +18,7 @@ import { Component } from "@angular/core";
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
         
-                        <li><a *ngIf="isAuth()">Logout</a></li>
+                        <li><a (click)="onLogout()" style="cursor: pointer;" *ngIf="isAuth()">Logout</a></li>
                     </ul>
                 </div><!-- /.container-fluid -->
         
@@ -31,5 +31,9 @@ export class HeaderComponent {
     constructor(private authService:Authservice){}
     isAuth(){
         return this.authService.isAuthenticated();
+    }
+
+    onLogout(){
+        this.authService.logout();
     }
 }
