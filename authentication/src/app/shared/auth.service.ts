@@ -1,12 +1,13 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { User } from './user.interface';
+import {Subject,Observable} from "rxjs"
 
 declare var firebase: any;
 
 @Injectable()
 export class Authservice {
-constructor(private router:Router){}
+    constructor(private router: Router) { }
 
     signupUser(user: User) {
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password).catch(function (error) {
@@ -20,18 +21,20 @@ constructor(private router:Router){}
         });
     }
 
-logout(){
-    firebase.auth().signOut();
-    this.router.navigate(['']);
-}
+    logout() {
+        firebase.auth().signOut();
+        this.router.navigate(['']);
+    }
 
-    isAuthenticated() {
-        var user = firebase.auth().currentUser;
-
-        if (user) {
-       return true;
-        } else {
-            return false;
-        }
+    isAuthenticated() :Observable<boolean>{
+        const subject=new Subject<boolean>();
+        var user = firebase.auth().onAuthStateChanged(function (user) {            
+            if (user) {
+                return subject.next(true);
+            } else {
+                return subject.next(false);
+            }
+        });
+        return subject.asObservable();
     }
 }

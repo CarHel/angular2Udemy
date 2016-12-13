@@ -11,7 +11,7 @@ constructor(private authService:Authservice){
 }
 
 canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<boolean>|boolean{
-return this.authService.isAuthenticated();
+return this.authService.isAuthenticated().first();
 }
 
 }
