@@ -1,3 +1,4 @@
+import { Authservice } from './../shared/auth.service';
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
@@ -7,11 +8,11 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
         
         <form [formGroup]="myForm"  (ngSubmit)="onSignin()">
         <div  >
-            <div class="input-group">
+            <div class="form-group">
                 <label for="email">E-Mail</label>
                 <input formControlName="email" class="form-control" type="email" id="email">
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input formControlName="password" class="form-control" type="password" id="password">
             </div>
@@ -25,10 +26,10 @@ export class SigninComponent implements OnInit {
     error = false;
     errorMessage = '';
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private authService: Authservice) { }
 
     onSignin() {
-
+        this.authService.signinUser(this.myForm.value);
     }
 
     ngOnInit(): any {
