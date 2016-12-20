@@ -1,6 +1,8 @@
 import {
   Component,
-  trigger
+  trigger,
+  state,
+  style
 } from '@angular/core';
 
 @Component({
@@ -8,7 +10,14 @@ import {
   templateUrl: './app.component.html',
   animations: [
     trigger('divState', [
-
+state('normal',style({
+  backgroundColor:'red',
+  transform:'translateX(0)'
+})),
+state('highlighted',style({
+  backgroundColor:'blue',
+  transform:'translateX(100px)'
+    }))
     ])
   ]
 })
